@@ -18,12 +18,16 @@ depends=('curl'
          'python'
          'sqlite')
 optdepends=()
+backup=('etc/cvmfs/default.local')
+install=cvmfs.install
 options=('!emptydirs')
 source=("https://github.com/${pkgname}/${pkgname}/archive/${pkgname}-${pkgver}.zip"
         'libexec.patch'
+        'default.local'
         'settings.cmake')
 sha256sums=('ef4bd4ea86832db950cd5b4761fe5c74622ff2f234e57f4cd932ef10aeb1a549'
             '7a33466e3b1763cead058b32fecea35a4a008fdba400e2406243a98305984bfe'
+            '333106748ee8f7c5fe2e84810b22922f6f89f4f6ef1d9818512265c768150edb'
             '559f8ef1a76378cf979b8d507696f97b0a478268f437f773f463a978f994a81e')
 
 prepare() {
@@ -47,5 +51,6 @@ package() {
     cd "${srcdir}/build"
 
     make DESTDIR="${pkgdir}" install
-    install -D "${srcdir}/${pkgname}-${pkgname}-${pkgver}/COPYING" "${pkgdir}/usr/share/licenses/cvmfs/COPYING"
+    install -Dm644 "${srcdir}/${pkgname}-${pkgname}-${pkgver}/COPYING" "${pkgdir}/usr/share/licenses/cvmfs/COPYING"
+    install -Dm644 "${srcdir}/default.local" "${pkgdir}/etc/cvmfs/default.local"
 }

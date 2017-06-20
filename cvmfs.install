@@ -1,0 +1,24 @@
+post_install() {
+  echo "To complete the setup please follow the instructions:"
+  echo "  - modify /etc/cvmfs/default.local according to your needs, cf. the Technical Report at http://cernvm.cern.ch/portal/sites/cernvm.cern.ch/files/cvmfstech-2.1-5.pdf"
+  echo "If you plan on using AutoFS, please run:"
+  echo "  # cvmfs_config setup"
+  echo "  # systemctl restart autofs"
+  echo "Otherwise you can mount manually like so:"
+  echo "  # mkdir -p /cvmfs/domain.cern.ch"
+  echo "  # mount -t cvmfs domain.cern.ch /cvmfs/domain.cern.ch"
+}
+
+post_remove() {
+  sed -i '/cvmfs/d' /etc/autofs/auto.master
+  systemctl restart autofs
+  sed -i '/added by CernVM-FS/d' /etc/fuse.conf
+  userdel cvmfs
+  rm -rf /var/lib/cvmfs /cvmfs
+}
+
+post_upgrade() {
+  if ! grep -q 'added by CernVM-FS' /etc/fuse.conf; then
+     echo "CernVM-FS modifications in /etc/fuse.conf not found. You might have to enable 'user_allow_other' by hand.";
+  fi
+}
