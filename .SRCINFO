@@ -1,0 +1,31 @@
+pkgbase = cvmfs
+	pkgdesc = A scalable, reliable and low-maintenance software distribution service.
+	pkgver = 2.3.5
+	pkgrel = 3
+	url = https://cernvm.cern.ch
+	arch = i686
+	arch = x86_64
+	license = BSD
+	makedepends = cmake
+	makedepends = gtest
+	makedepends = python-geoip
+	makedepends = sparsehash
+	depends = curl
+	depends = c-ares
+	depends = fuse2
+	depends = intel-tbb
+	depends = leveldb
+	depends = openssl-1.0
+	depends = pacparser
+	depends = python
+	depends = sqlite
+	options = !emptydirs
+	source = https://github.com/cvmfs/cvmfs/archive/cvmfs-2.3.5.zip
+	source = libexec.patch
+	source = settings.cmake
+	sha256sums = ef4bd4ea86832db950cd5b4761fe5c74622ff2f234e57f4cd932ef10aeb1a549
+	sha256sums = 7a33466e3b1763cead058b32fecea35a4a008fdba400e2406243a98305984bfe
+	sha256sums = 559f8ef1a76378cf979b8d507696f97b0a478268f437f773f463a978f994a81e
+
+pkgname = cvmfs
+
