@@ -1,7 +1,7 @@
 pkgbase = cvmfs
 	pkgdesc = A scalable, reliable and low-maintenance software distribution service.
 	pkgver = 2.3.5
-	pkgrel = 3
+	pkgrel = 4
 	url = https://cernvm.cern.ch
 	install = cvmfs.install
 	arch = i686

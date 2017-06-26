@@ -2,7 +2,7 @@
 
 pkgname=cvmfs
 pkgver=2.3.5
-pkgrel=3
+pkgrel=4
 pkgdesc='A scalable, reliable and low-maintenance software distribution service.'
 arch=('i686' 'x86_64')
 url='https://cernvm.cern.ch'
